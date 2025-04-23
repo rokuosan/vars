@@ -36,7 +36,6 @@ jobs:
         name: Setup Go
         with:
           go-version: ${{ matrix.go }}
-          stable: false
 
       - name: test
         run: go test -v ./...
