@@ -1,9 +1,8 @@
 package vars
 
 import (
+	"reflect"
 	"testing"
-
-	"github.com/stretchr/testify/assert"
 )
 
 func Test_definedOr(t *testing.T) {
@@ -84,7 +83,9 @@ func Test_definedOr(t *testing.T) {
 
 			result := DefinedOr(&nilPtr, defaultVal)
 
-			assert.Equal(t, defaultVal, result)
+			if !reflect.DeepEqual(result, defaultVal) {
+				t.Errorf("Expected %v, got %v", defaultVal, result)
+			}
 		})
 
 		t.Run("non-nil pointer returns its value", func(t *testing.T) {
@@ -93,7 +94,9 @@ func Test_definedOr(t *testing.T) {
 
 			result := DefinedOr(&value, defaultVal)
 
-			assert.Equal(t, value, result)
+			if !reflect.DeepEqual(result, value) {
+				t.Errorf("Expected %v, got %v", value, result)
+			}
 		})
 	})
 
@@ -104,7 +107,9 @@ func Test_definedOr(t *testing.T) {
 
 			result := DefinedOr(&nilPtr, defaultVal)
 
-			assert.Equal(t, defaultVal, result)
+			if !reflect.DeepEqual(result, defaultVal) {
+				t.Errorf("Expected %v, got %v", defaultVal, result)
+			}
 		})
 
 		t.Run("non-nil pointer returns its value", func(t *testing.T) {
@@ -113,7 +118,9 @@ func Test_definedOr(t *testing.T) {
 
 			result := DefinedOr(&value, defaultVal)
 
-			assert.Equal(t, value, result)
+			if !reflect.DeepEqual(result, value) {
+				t.Errorf("Expected %v, got %v", value, result)
+			}
 		})
 	})
 
@@ -124,7 +131,9 @@ func Test_definedOr(t *testing.T) {
 
 			result := DefinedOr(&nilPtr, defaultVal)
 
-			assert.Equal(t, defaultVal, result)
+			if result != defaultVal {
+				t.Errorf("Expected %v, got %v", defaultVal, result)
+			}
 		})
 
 		t.Run("non-nil pointer returns its value", func(t *testing.T) {
@@ -133,7 +142,9 @@ func Test_definedOr(t *testing.T) {
 
 			result := DefinedOr(&value, defaultVal)
 
-			assert.Equal(t, value, result)
+			if result != value {
+				t.Errorf("Expected %v, got %v", value, result)
+			}
 		})
 	})
 
@@ -144,7 +155,9 @@ func Test_definedOr(t *testing.T) {
 
 			result := DefinedOr(&nilPtr, defaultVal)
 
-			assert.Equal(t, defaultVal(), result())
+			if result == nil || defaultVal() != result() {
+				t.Errorf("Expected function to return %q, got %q", defaultVal(), result())
+			}
 		})
 
 		t.Run("non-nil pointer returns its value", func(t *testing.T) {
@@ -153,7 +166,9 @@ func Test_definedOr(t *testing.T) {
 
 			result := DefinedOr(&value, defaultVal)
 
-			assert.Equal(t, value(), result())
+			if result == nil || value() != result() {
+				t.Errorf("Expected function to return %q, got %q", value(), result())
+			}
 		})
 	})
 
@@ -164,7 +179,9 @@ func Test_definedOr(t *testing.T) {
 
 			result := DefinedOr(&nilPtr, defaultVal)
 
-			assert.Equal(t, defaultVal, result)
+			if !reflect.DeepEqual(result, defaultVal) {
+				t.Errorf("Expected %v, got %v", defaultVal, result)
+			}
 		})
 
 		t.Run("non-nil pointer returns its value", func(t *testing.T) {
@@ -173,7 +190,9 @@ func Test_definedOr(t *testing.T) {
 
 			result := DefinedOr(&value, defaultVal)
 
-			assert.Equal(t, value, result)
+			if !reflect.DeepEqual(result, value) {
+				t.Errorf("Expected %v, got %v", value, result)
+			}
 		})
 	})
 }
