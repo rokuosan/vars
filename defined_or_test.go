@@ -195,4 +195,21 @@ func Test_definedOr(t *testing.T) {
 			}
 		})
 	})
+
+	t.Run("works with pointer type", func(t *testing.T) {
+		var x int = 99
+		var ptr *int = &x
+		defaultPtr := new(int)
+
+		result := DefinedOr(&ptr, defaultPtr)
+		if result != ptr {
+			t.Errorf("Expected pointer %v, got %v", ptr, result)
+		}
+
+		var nilPtr *int = nil
+		result2 := DefinedOr(&nilPtr, defaultPtr)
+		if result2 != defaultPtr {
+			t.Errorf("Expected default pointer %v, got %v", defaultPtr, result2)
+		}
+	})
 }
